@@ -44,6 +44,9 @@ Standard Python Modules: csv, os, datetime, timedelta
   Attempt to borrow a book when its copies count is 0. The system should output "No copies available."
   Attempt to return a book using a non-existent loan_id. The system should output "Invalid loan ID."
 
+
+  
+
 ##Screenshots
 <img width="777" height="731" alt="Addition of books" src="https://github.com/user-attachments/assets/48e6d2b5-1453-4ea0-a6b9-b8964ca1904b" />
 <img width="543" height="907" alt="More functionalities" src="https://github.com/user-attachments/assets/d2ae440e-db72-4d5e-b1f5-5bce7a1428b5" />
