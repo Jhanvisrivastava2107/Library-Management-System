@@ -22,4 +22,4 @@ The system offers the following key functional capabilities:
 
 -Book Return: A function to successfully mark a loan as completed and return the book to the available inventory.
 
--Search Capability: Quick search functionality to find books by title or author.
+-Search Capability: Quick search functionality to find books by title or author
