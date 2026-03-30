@@ -188,6 +188,7 @@ def main():
         elif choice == "7": return_book()
         elif choice == "8": issue_book()
         elif choice == "9": most_issued_books()
+        elif choice == "10":
             print("Bye.")
             break
         else:
