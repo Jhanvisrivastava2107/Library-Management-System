@@ -131,9 +131,10 @@ from datetime import datetime, timedelta
 
 issued_books = {}
 
+book_issue_count = {}
 def issue_book(book_id, user):
     issue_date = datetime.now()
-    due_date = issue_date + timedelta(days=7)  # 7 days borrowing
+    due_date = issue_date + timedelta(days=7)
 
     issued_books[book_id] = {
         "user": user,
@@ -141,28 +142,24 @@ def issue_book(book_id, user):
         "due_date": due_date
     }
 
-    print(f"Book issued successfully. Due date: {due_date.date()}")
+    
+    if book_id in book_issue_count:
+        book_issue_count[book_id] += 1
+    else:
+        book_issue_count[book_id] = 1
 
-def return_book(book_id):
-    if book_id not in issued_books:
-        print("Book not issued.")
+    print(f"Book issued. Due date: {due_date.date()}")
+    
+def most_issued_books():
+    if not book_issue_count:
+        print("No books issued yet.")
         return
 
-    record = issued_books[book_id]
-    due_date = record["due_date"]
-    return_date = datetime.now()
+    sorted_books = sorted(book_issue_count.items(), key=lambda x: x[1], reverse=True)
 
-    delay = (return_date - due_date).days
-
-    if delay > 0:
-        fine = delay * 5  # ₹5 per day
-        print(f"Book returned late. Fine: ₹{fine}")
-    else:
-        print("Book returned on time. No fine.")
-
-    del issued_books[book_id]
-issue_date.strftime("%Y-%m-%d")
-datetime.strptime(date_string, "%Y-%m-%d")
+    print("\nMost Issued Books:")
+    for book_id, count in sorted_books:
+        print(f"Book ID: {book_id} | Issued: {count} times")
 
 def main():
     ensure_files()
@@ -176,7 +173,9 @@ def main():
         print("5. Add Member")
         print("6. Borrow Book")
         print("7. Return Book")
-        print("8. Exit")
+        print("8. Issued Books")
+        print("9. View Most Issued Books")
+        print("10. Exit")
 
         choice = input("Choice: ")
 
@@ -187,7 +186,8 @@ def main():
         elif choice == "5": add_member()
         elif choice == "6": borrow_book()
         elif choice == "7": return_book()
-        elif choice == "8":
+        elif choice == "8": issue_book()
+        elif choice == "9": most_issued_books()
             print("Bye.")
             break
         else:
