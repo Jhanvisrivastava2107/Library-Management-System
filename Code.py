@@ -127,39 +127,6 @@ def return_book():
 
     print("Book returned!")
 
-from datetime import datetime, timedelta
-
-issued_books = {}
-
-book_issue_count = {}
-def issue_book(book_id, user):
-    issue_date = datetime.now()
-    due_date = issue_date + timedelta(days=7)
-
-    issued_books[book_id] = {
-        "user": user,
-        "issue_date": issue_date,
-        "due_date": due_date
-    }
-
-    
-    if book_id in book_issue_count:
-        book_issue_count[book_id] += 1
-    else:
-        book_issue_count[book_id] = 1
-
-    print(f"Book issued. Due date: {due_date.date()}")
-    
-def most_issued_books():
-    if not book_issue_count:
-        print("No books issued yet.")
-        return
-
-    sorted_books = sorted(book_issue_count.items(), key=lambda x: x[1], reverse=True)
-
-    print("\nMost Issued Books:")
-    for book_id, count in sorted_books:
-        print(f"Book ID: {book_id} | Issued: {count} times")
 
 def main():
     ensure_files()
@@ -173,9 +140,7 @@ def main():
         print("5. Add Member")
         print("6. Borrow Book")
         print("7. Return Book")
-        print("8. Issued Books")
-        print("9. View Most Issued Books")
-        print("10. Exit")
+        print("8. Exit")
 
         choice = input("Choice: ")
 
@@ -186,9 +151,7 @@ def main():
         elif choice == "5": add_member()
         elif choice == "6": borrow_book()
         elif choice == "7": return_book()
-        elif choice == "8": issue_book()
-        elif choice == "9": most_issued_books()
-        elif choice == "10":
+        elif choice == "8":
             print("Bye.")
             break
         else:
